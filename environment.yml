@@ -1,0 +1,12 @@
+name: moon 
+channels: 
+  - conda-forge 
+  - bioconda 
+  - base 
+  - R
+dependencies: 
+  - r-base=4.4.3
+  - r-tidyverse= 2.0.0
+  - wget=1.21.4
+  - snakemake=9.9.0
+  

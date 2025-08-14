@@ -1,3 +1,9 @@
+#ignore snakemake files 
+.snakemake/
+
+#ignore data 
+/01_data
+
 # History files
 .Rhistory
 .Rapp.history
