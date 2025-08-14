@@ -6,7 +6,9 @@ channels:
   - R
 dependencies: 
   - r-base=4.4.3
-  - r-tidyverse= 2.0.0
+  - r-tidyverse=2.0.0
+  - r-languageserver=0.3.16 #this is necessary to run VScode R terminal
+  - r-httpgd=2.0.4  
   - wget=1.21.4
   - snakemake=9.9.0
   
