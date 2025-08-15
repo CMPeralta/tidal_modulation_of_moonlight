@@ -1,0 +1,28 @@
+name: moon_py3d
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # --- Python core & plotting (pins from your working python3D env) ---
+  - python=3.12
+  - pandas=2.2.*
+  - numpy=2.0.*
+  - plotly=5.22.*
+  - python-kaleido=0.2.*     # Kaleido engine for static export
+  - seaborn=0.13.*
+  - matplotlib=3.9.*
+  - pillow                   # for image I/O if needed
+  - pypdf                    # for PDF merge (PdfWriter.append)
+  - packaging
+
+  # --- R stack (from your moon env) ---
+  - r-base=4.4.*
+  - r-tidyverse=2.0.0
+  - r-languageserver=0.3.16  # VS Code R extension backend
+  - r-httpgd=2.0.4           # nice graphics device for VS Code
+
+  # --- CLI/tools ---
+  - wget
+  - snakemake=9.9.0
+
