@@ -1,3 +1,6 @@
+#ignore plots 
+Rplots.pdf
+
 #ignore 
 .DS_Store
 
