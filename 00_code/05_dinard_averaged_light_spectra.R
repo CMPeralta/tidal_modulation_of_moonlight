@@ -3,6 +3,8 @@
 library(tidyverse)
 library(patchwork)
 
+## FigureS2bc - daylight and moonlight averaged spectra
+
 #get data
 dinard_form <- as_tibble(read.csv("01_data/dinard_light_data_formatted.csv", row.names = NULL))
 dinard_form <- dinard_form %>%

@@ -4,6 +4,8 @@ library(tidyverse)
 library(data.table)
 library(xts)
 
+## Figure1a - DINARD UNDERWATER
+
 dinard_form <- as_tibble(read.csv("01_data/dinard_light_data_formatted.csv", row.names = NULL))
 dinard_form <- dinard_form %>%
     mutate(time_date_UTC = as.POSIXct(dinard_form$time_date_UTC, format="%Y-%m-%d %H:%M:%S", tz = "UTC")) %>%
@@ -12,6 +14,8 @@ dinard_form <- dinard_form %>%
 
 ##convert to datatable
 dinard_form_dt <- data.table(dinard_form)
+
+##CALCULATE AVERAGE 3O MIN 
 
 ##convert your data.table to an xts object
 x <- as.xts(dinard_form_dt[,time_date_UTC := as.POSIXct(time_date_UTC, tz = "UTC")])

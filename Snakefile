@@ -4,7 +4,10 @@ rule targets:
         "01_data/dinard_light_data_formatted.csv",
         "02_visuals/FigureS2a_Dinard_raw_data_spectrum_all.pdf",
         "02_visuals/FigureS2bc_daylight_and_moonlight_averaged_spectraFM.pdf",
+        "02_visuals/FigureS3_Dinard_summed_waves_over_time.pdf",
+        "02_visuals/FigureS1_map_locations_insets.pdf",
         "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf"
+        
 
 rule get_field_light_data: 
     input: 
@@ -45,11 +48,16 @@ rule create_plots_dinard:
     input: 
         bash_script = "00_code/10_create_R_plots_Dinard.sh",
         r_script1 = "00_code/05_dinard_averaged_light_spectra.R",
-        r_script2 = "00_code/08_plot_dinard_moonlight.R",
+        r_script2 = "00_code/06_plot_summed_wavelengths_over_time.R",
+        r_script3 = "00_code/07_make_map_locations.R",
+        r_script4 = "00_code/08_plot_dinard_moonlight.R",
         data = "01_data/dinard_light_data_formatted.csv"
     output: 
         "02_visuals/FigureS2bc_daylight_and_moonlight_averaged_spectraFM.pdf",
+        "02_visuals/FigureS3_Dinard_summed_waves_over_time.pdf",
+        "02_visuals/FigureS1_map_locations_insets.pdf",
         "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf"
+        
     shell: 
         """
         {input.bash_script}
