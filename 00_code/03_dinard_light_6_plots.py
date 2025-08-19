@@ -133,7 +133,7 @@ if __name__ == "__main__":
         run_one(csv_path, out_pdf, ticks)
 
     # 2)merge PDFs 
-    merged_pdf = "02_visuals/Dinard_daylight_spectrum_all.pdf"
+    merged_pdf = "02_visuals/FigureS2a_Dinard_raw_data_spectrum_all.pdf"
     part_pdfs = sorted(glob.glob(os.path.join("02_visuals", "Dinard_daylight_spectrum_3D_part*.pdf")))
     if part_pdfs:
         writer = PdfWriter()

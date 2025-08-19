@@ -98,4 +98,4 @@ guides(colour = guide_colourbar(title.vjust = 1.5)) +
 ggtitle("Dinard - underwater") + 
 theme_1A 
 
-ggsave("02_visuals/Figure1A_nm_400_500_600_UTC_2h_NM_NM_NIGHT.pdf", width = 6, height = 4.5)
+ggsave("02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf", width = 6, height = 4.5)

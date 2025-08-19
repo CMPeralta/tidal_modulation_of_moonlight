@@ -101,25 +101,29 @@ night_spect_se <- ggplot(data = average_spectrum_NIGHT_f, aes(x = wavelength, y 
   geom_point(color = "#2b4bb5") +  # Change geom_path() to geom_point() to add points
   geom_ribbon(aes(ymin = average - se, ymax = average + se), fill = "#2b4bb5", alpha = 0.2) + 
   scale_y_continuous(expand = c(0.0, 0.0)) + 
-    scale_x_continuous(expand = c(0.0, 0.0), breaks = seq(300, 800, by = 50)) + 
+  scale_x_continuous(expand = c(0.0, 0.0), breaks = seq(300, 800, by = 50)) + 
   theme(axis.text.x = element_text(size = 12),  # Increase text size
         axis.text.y = element_text(size = 12),  # Increase text size
         axis.title = element_text(size = 14),  # Increase axis title size
         axis.line = element_line(size = 0.5),
-        panel.background = element_blank())
+        panel.background = element_blank()) + 
+  xlab("Wavelength (nm)") + 
+  ylab(expression("Average irradiance (mW" ~ m^{-2} ~ nm^{-1} ~ ")"))
 
 day_spect_se <- ggplot(data = average_spectrum_DAY_f, aes(x = wavelength, y = average)) + 
   geom_point(color = "#ffbc2c") +  # Change geom_path() to geom_point() to add points
   geom_ribbon(aes(ymin = average - se, ymax = average + se), fill = "#ffbc2c", alpha = 0.2) + 
   scale_y_continuous(expand = c(0.0, 0.0)) + 
-    scale_x_continuous(expand = c(0.0, 0.0), breaks = seq(300, 800, by = 50)) + 
+  scale_x_continuous(expand = c(0.0, 0.0), breaks = seq(300, 800, by = 50)) + 
   theme(axis.text.x = element_text(size = 12),  # Increase text size
         axis.text.y = element_text(size = 12),  # Increase text size
         axis.title = element_text(size = 14),  # Increase axis title size
         axis.line = element_line(size = 0.5),
-        panel.background = element_blank())       
+        panel.background = element_blank()) + 
+  xlab("Wavelength (nm)") + 
+  ylab(expression("Average irradiance (mW" ~ m^{-2} ~ nm^{-1} ~ ")"))
 
 
 day_spect_se+night_spect_se
 
-ggsave("02_visuals/daylight_and_moonlight_averaged_spectraFM.pdf", width = 12, height =5)
+ggsave("02_visuals/FigureS2bc_daylight_and_moonlight_averaged_spectraFM.pdf", width = 12, height =5)
