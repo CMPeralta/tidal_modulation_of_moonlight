@@ -6,7 +6,8 @@ rule targets:
         "02_visuals/FigureS2bc_daylight_and_moonlight_averaged_spectraFM.pdf",
         "02_visuals/FigureS3_Dinard_summed_waves_over_time.pdf",
         "02_visuals/FigureS1_map_locations_insets.pdf",
-        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf"
+        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf",
+        "02_visuals/FigureS4_selected_wavelenghts_daylight_tides.pdf"
         
 
 rule get_field_light_data: 
@@ -51,12 +52,14 @@ rule create_plots_dinard:
         r_script2 = "00_code/06_plot_summed_wavelengths_over_time.R",
         r_script3 = "00_code/07_make_map_locations.R",
         r_script4 = "00_code/08_plot_dinard_moonlight.R",
+        r_script5 = "00_code/09_plot_selected_wavelenghts_over_daytime.R",
         data = "01_data/dinard_light_data_formatted.csv"
     output: 
         "02_visuals/FigureS2bc_daylight_and_moonlight_averaged_spectraFM.pdf",
         "02_visuals/FigureS3_Dinard_summed_waves_over_time.pdf",
         "02_visuals/FigureS1_map_locations_insets.pdf",
-        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf"
+        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf",
+        "02_visuals/FigureS4_selected_wavelenghts_daylight_tides.pdf"
         
     shell: 
         """
