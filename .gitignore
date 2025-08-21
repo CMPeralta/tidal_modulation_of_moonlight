@@ -1,3 +1,6 @@
+#ignore quality control 
+98_code_data_visuals_not_used/
+
 #ignore plots 
 Rplots.pdf
 
