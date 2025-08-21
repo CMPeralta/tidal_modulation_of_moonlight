@@ -1,3 +1,4 @@
+
 #ignore quality control 
 98_code_data_visuals_not_used/
 
@@ -6,6 +7,7 @@ Rplots.pdf
 
 #ignore 
 .DS_Store
+.vscode
 
 #ignore environments not used, kept just in case 
 99_env_not_used/
