@@ -1,4 +1,4 @@
-#!/user/bin/env Rscript 
+#!/usr/bin/env Rscript 
 
 library(tidyverse)
 library(dplyr)
