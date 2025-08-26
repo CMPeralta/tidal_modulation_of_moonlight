@@ -15,6 +15,7 @@ dinard_form <- dinard_form %>%
 ##convert to datatable
 dinard_form_dt <- data.table(dinard_form)
 
+##############################PREP LIGHT DATA##############################
 ##CALCULATE AVERAGE 3O MIN 
 
 ##convert your data.table to an xts object
@@ -71,6 +72,64 @@ dinard_form_avg_wave_zeros_NM_NM <- dinard_form_avg_wave_zeros %>%
                             (hour(time_date_UTC) < 17 | minute(time_date_UTC) < 55),
                             NA, nm_400_500_600)) 
 
+###########################################################################
+
+##############################PREP TIDAL DATA##############################
+#for details on how to obtain ERA5 water level data and how the data was pre-processed (manually), see Peralta et al. 2025
+tides_raw <- as.tibble(read.csv("01_data/tidal_data_water_level_ERA5_X_dinard_357.9712_Y_48.64014.csv")) 
+
+#convert to posixct and remove unnecessary columns 
+tides_ed <- tides_raw %>%
+    mutate(date_UTC = as.POSIXct((DATE), format="%d/%m/%Y", tz = "UTC"), 
+        time_date_UTC = as.POSIXct(paste(date_UTC, TIME_UTC), format="%Y-%m-%d %H:%M:%S",tz = "UTC"),
+        time_UTC = format(as.POSIXct(time_date_UTC), format = "%H:%M")) %>%
+    select(-n, -X, -DATE, -TIME_UTC) %>%
+    relocate(DAY, date_UTC, time_UTC, time_date_UTC) %>%
+    rename(day = DAY,
+            tide = TIDE,
+            water_level= WATER_LEVEL)
+
+#get days accordingly to the dinard light dataset 
+start_date <- 18-1
+
+tides_ed_day <- tides_ed %>% 
+  filter(time_date_UTC >= as.POSIXct("2013-11-03 12:00:13",tz = "UTC"),
+        time_date_UTC < as.POSIXct("2014-01-02 11:55:13",tz = "UTC"))%>%
+  group_by(date_UTC) %>% 
+  mutate(day_daylight =cur_group_id() + start_date,
+        day_moonlight = cur_group_id() + start_date) %>% 
+    ungroup() %>% 
+#day is for plotting moonlight (day starts at 12:00 so that middle of the night is in the middle of the plot)
+  mutate(day_moonlight = ifelse(hour(time_date_UTC) < 12, day_daylight - 1, day_daylight)) %>% 
+  select(day,time_date_UTC, day_daylight, day_moonlight, everything()) %>%
+  select(-day)  %>%
+  rename(day = day_moonlight)
+
+#Round timepoints to match the light data from dinard 
+#separate hours, min and sec 
+tides_ed_day_bin <- tides_ed_day %>%
+    separate(time_UTC, into = c("hour", "minutes")) %>%
+    group_by(date_UTC, hour) %>%
+    mutate(new_min = ifelse((minutes > 25 & minutes <= 55), 55, ifelse(minutes < 25, 25, 25)), 
+            hour = as.numeric(hour), 
+            new_hour = ifelse(minutes > 55, hour+1, hour),
+            new_hour = sprintf('%02d', as.numeric(new_hour)), 
+            time = str_remove_all(paste0(new_hour, ":", new_min), " ")) %>%
+    ungroup() %>% 
+    select(-c(new_min,new_hour, hour, minutes))
+
+tides_ed_day_bin$time_fct <- factor(tides_ed_day_bin$time, levels = c("12:25","12:55","13:25","13:55",
+"14:25","14:55","15:25","15:55","16:25","16:55","17:25","17:55","18:25",
+"18:55","19:25","19:55","20:25","20:55","21:25","21:55","22:25","22:55", 
+"23:25","23:55","00:25","00:55","01:25","01:55","02:25","02:55","03:25",
+"03:55","04:25","04:55","05:25","05:55","06:25","06:55","07:25","07:55",
+"08:25","08:55","09:25","09:55","10:25","10:55","11:25","11:55"))
+
+#filter HT and LT for ploting 
+tides_ed_day_bin_HT <- tides_ed_day_bin[tides_ed_day_bin$tide == "HT",]
+tides_ed_day_bin_LT <- tides_ed_day_bin[tides_ed_day_bin$tide == "LT",]
+###########################################################################
+
 #theme for plotting 
 theme_1A <-   theme_bw() + 
                 theme(
@@ -94,6 +153,8 @@ scale_fill_gradient2(
             name=bquote(atop("Night light",(mW/m^-2/nm^-1))), 
             limits=c(0,max(dinard_form_avg_wave_zeros_NM_NM$nm_400_500_600_na, na.rm = TRUE)), 
             breaks = c(0, 0.03, 0.06)) +
+geom_point(data = tides_ed_day_bin_LT, size = 2, aes(x = day, y = time_fct, colour = "Low Tide"), shape = 25, fill = "#418fde", color = "grey") +
+geom_point(data = tides_ed_day_bin_HT, size = 2, aes(x = day, y = time_fct, colour = "High Tide"), shape = 25, fill = "#DD312E", color = "grey") +
 scale_x_continuous(expand = c(0.001,0.001), breaks = c(18,32,48,62,77)) +
 scale_y_discrete(expand = c(0, 0), breaks = c("11:55", "06:25", "00:25", "17:55", "12:25"), labels = c("12:00", "06:00", "00:00", "18:00", "12:00")) + 
 xlab("Day of measurement") + 

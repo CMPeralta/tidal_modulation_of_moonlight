@@ -91,10 +91,12 @@ rule create_plot_dinard_day_tides:
         """
         {input.r_script}
         """ 
+        
 rule create_plots_dinard_night_tides: 
     input: 
         r_script = "00_code/08_plot_dinard_moonlight.R",
-        data = "01_data/dinard_light_data_formatted.csv"
+        data_light = "01_data/dinard_light_data_formatted.csv",
+        data_tides = "01_data/tidal_data_water_level_ERA5_X_dinard_357.9712_Y_48.64014.csv"
     output: 
         "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf",
     shell: 
