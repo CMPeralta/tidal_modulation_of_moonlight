@@ -33,4 +33,5 @@ dependencies:
   # --- CLI/tools ---
   - wget
   - snakemake=9.9.0
+  - graphviz=12.2.1
 
