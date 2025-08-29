@@ -54,6 +54,10 @@ rule create_map:
         rscript = "00_code/07_make_map_locations.R"
     output: 
         "02_visuals/FigureS1_map_locations_insets.pdf"
+    shell: 
+        """
+        {input.rscript}
+        """ 
   
 
 rule create_plots_dinard_wave: 
