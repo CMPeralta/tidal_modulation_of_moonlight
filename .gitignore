@@ -16,7 +16,8 @@ Rplots.pdf
 .snakemake/
 
 #ignore data 
-/01_data
+/01_data/*
+!/01_data/README.md
 
 # History files
 .Rhistory
