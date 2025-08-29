@@ -25,9 +25,14 @@ To get the data and produce the figures, follow these steps:
    conda activate moon_py3d
    ```
 
-3. Run the pipeline using Snakemake:
+3. Open R and install geslaR via CRAN (takes a while to install)
+
+   ```
+ install.packages("geslaR", dependencies = TRUE, repos = "https://cloud.r-project.org")
+   ```
+
+4. Run the pipeline using Snakemake:
 
    ```
    snakemake -c 1
-   ``` 
-
+   ```
