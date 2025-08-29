@@ -17,6 +17,7 @@ To get the data and produce the figures, follow these steps:
    git clone https://github.com/CMPeralta/tidal_modulation_of_moonlight.git
    cd tidal_modulation_of_moonlight
     ```
+    
 2. Create and activate the conda environment with the versions used to run all code: 
 
    ```bash
@@ -28,6 +29,7 @@ conda env create -f unified_env.yml
 
 conda activate moon_py3d
     ```
+
 3. run the pipeline using snakemake 
 
    ```bash
