@@ -5,4 +5,4 @@ It includes scripts used to produce some figures (Figure 1a and Figures S1-S4) o
 
 
 ![Heatmap of light intensity detected at night with a
-submerged radiometer in the intertidal region of Dinard](02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf)
+submerged radiometer in the intertidal region of Dinard](02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.png)

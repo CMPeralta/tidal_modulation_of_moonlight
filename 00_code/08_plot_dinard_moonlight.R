@@ -180,7 +180,5 @@ final <- ggdraw() +
   draw_plot(p) +
   draw_plot(leg, x = 0.15, y = 0.01, width = 0.18, height = 0.22)  # tweak position/size as you like
 
-final
-
-
-ggsave("02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf", width = 6, height = 4.5)
+#ggsave("02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf", width = 6, height = 4.5)
+ggsave("02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.png", width = 8, height = 5, units = "in", dpi = 300)

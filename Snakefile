@@ -8,7 +8,7 @@ rule targets:
         "02_visuals/FigureS3_Dinard_summed_waves_over_time.pdf",
         "01_data/tidal_data_GESLA_STmalo.csv",
         "02_visuals/FigureS4_selected_wavelenghts_daylight_tides.pdf",
-        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf",
+        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.png",
         
 
 rule get_field_light_data: 
@@ -98,7 +98,7 @@ rule create_plots_dinard_night_tides:
         data_light = "01_data/dinard_light_data_formatted.csv",
         data_tides = "10_pre_processed_data/tidal_data_water_level_ERA5_X_dinard_357.9712_Y_48.64014.csv"
     output: 
-        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf",
+        "02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.png",
     shell: 
         """
         {input.r_script}
