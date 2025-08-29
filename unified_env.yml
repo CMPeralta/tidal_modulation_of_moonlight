@@ -29,6 +29,7 @@ dependencies:
   - r-rnaturalearthdata=1.0.0
   - r-arrow=19.0.1
   - r-oce=1.8_3 
+  - r-cowplot=1.2.0
 
   # --- CLI/tools ---
   - wget
