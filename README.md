@@ -19,6 +19,7 @@ To get the data and produce the figures, follow these steps:
 
 2. Create and activate the conda environment with the versions used to run all code: 
 
+   ```bash
 ##create a new environment called “moon_py3d”
 conda env create -f unified_env.yml
 
@@ -26,4 +27,6 @@ conda env create -f unified_env.yml
 conda activate moon_py3d
 
 3. run the pipeline using snakemake 
+
+   ```bash
 snakemake -c 1 
