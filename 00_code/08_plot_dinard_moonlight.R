@@ -3,6 +3,7 @@
 library(tidyverse)
 library(data.table)
 library(xts)
+library(cowplot)
 
 ## Figure1a - DINARD UNDERWATER
 
@@ -76,7 +77,7 @@ dinard_form_avg_wave_zeros_NM_NM <- dinard_form_avg_wave_zeros %>%
 
 ##############################PREP TIDAL DATA##############################
 #for details on how to obtain ERA5 water level data and how the data was pre-processed (manually), see Peralta et al. 2025
-tides_raw <- as.tibble(read.csv("01_data/tidal_data_water_level_ERA5_X_dinard_357.9712_Y_48.64014.csv")) 
+tides_raw <- as.tibble(read.csv("10_pre_processed_data/tidal_data_water_level_ERA5_X_dinard_357.9712_Y_48.64014.csv")) 
 
 #convert to posixct and remove unnecessary columns 
 tides_ed <- tides_raw %>%
@@ -142,7 +143,7 @@ theme_1A <-   theme_bw() +
                 axis.title.y = element_text(size = 12, margin = margin(r = 10)))
 
 #plot  
-ggplot() +
+p <- ggplot() +
 geom_tile(data = dinard_form_avg_wave_zeros_NM_NM, aes(day,time2,fill=nm_400_500_600_na),color= NA,size=0,show.legend = TRUE) + 
 scale_fill_gradient2(
             low = "black", 
@@ -162,5 +163,24 @@ ylab("Time UTC [hh:mm]") +
 guides(colour = guide_colourbar(title.vjust = 1.5)) + 
 ggtitle("Dinard - underwater") + 
 theme_1A 
+
+#build a tiny legend with two triangles 
+leg <- ggplot() +
+  # low tide
+  geom_point(aes(x = 0, y = 1), shape = 25, size = 2, colour = "grey", fill = "#418fde") +
+  geom_text(aes(x = 0.18, y = 1, label = "Low Tide"), hjust = 0, vjust = 0.5) +
+  # high tide
+  geom_point(aes(x = 0, y = 0), shape = 25, size = 2, colour = "grey", fill = "#DD312E") +
+  geom_text(aes(x = 0.18, y = 0, label = "High Tide"), hjust = 0, vjust = 0.5) +
+  xlim(-0.05, 1.2) + ylim(-0.6, 1.6) +
+  theme_void() +
+  theme(plot.margin = margin(0, 0, 0, 0))
+
+final <- ggdraw() +
+  draw_plot(p) +
+  draw_plot(leg, x = 0.15, y = 0.01, width = 0.18, height = 0.22)  # tweak position/size as you like
+
+final
+
 
 ggsave("02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.pdf", width = 6, height = 4.5)
