@@ -7,31 +7,26 @@ It includes scripts used to produce some figures (Figure 1a and Figures S1-S4) o
 ![Heatmap of light intensity detected at night with a
 submerged radiometer in the intertidal region of Dinard](02_visuals/Figure1a_nm_400_500_600_2cycles_NIGHT.png)
 
-## Usage 
+## Usage
 
 To get the data and produce the figures, follow these steps:
 
-1. Clone the GitHub Repository:
+1. Clone the GitHub repository:
 
-    ```bash
+   ```
    git clone https://github.com/CMPeralta/tidal_modulation_of_moonlight.git
    cd tidal_modulation_of_moonlight
-    ```
-    
+   ```
+
 2. Create and activate the conda environment with the versions used to run all code: 
 
-   ```bash
-##create a new environment called “moon_py3d”
-    
-conda env create -f unified_env.yml
+   ```
+   conda env create -f unified_env.yml
+   conda activate moon_py3d
+   ```
 
-##activate the environment 
+3. Run the pipeline using Snakemake:
 
-conda activate moon_py3d
-    ```
-
-3. run the pipeline using snakemake 
-
-   ```bash
-snakemake -c 1 
-    ```
+   ```
+   snakemake -c 1
+   ```
