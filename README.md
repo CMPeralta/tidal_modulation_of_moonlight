@@ -9,7 +9,7 @@ submerged radiometer in the intertidal region of Dinard](02_visuals/Figure1a_nm_
 **Figure 1. Moonlight intensity in the intertidal zone is modulated by the tides.** (a) Heatmap of light intensity detected at night with a submerged radiometer in the intertidal region of Dinard. Days of two consecutive lunar months from new moon to new moon (3 November 2013 and 2 January 2014) are shown on the x-axis and time of day on the y axis. Timing of low and high tides is shown as blue and red triangles, respectively. The maximum daily moonlight duration detected was of 4 h 30 min in days close to full moon.
 
 
-*Note: The script for Figure S4 recreates the plot using tidal data fetched via the R package **geslaR**. In the manuscript, tide times and water levels were manually extracted from **maree.info**.  As a result, this figure is just a reproducible alternative.*
+*Note: The script for Figure S4 recreates the plot using tidal data fetched via the R package **geslaR**. In the manuscript, tide times and water levels were manually extracted from **maree.info**.  As a result, FigS4 is just a reproducible alternative.*
 
 ## Usage
 
