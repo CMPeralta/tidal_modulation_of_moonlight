@@ -32,7 +32,7 @@ To get the data and produce the figures, follow these steps:
 3. Open R and install geslaR via CRAN (takes a while to install):
 
    ```r
-   install.packages("geslaR", dependencies = TRUE, repos = "https://cloud.r-project.org")
+   R -q -e 'install.packages("geslaR", repos="https://cloud.r-project.org")'
    ```
 
 4. Run the pipeline using Snakemake:
